@@ -3,28 +3,49 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { HTTP } from '@ionic-native/http';
+
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
+import { GovhomePage } from '../pages/govhome/govhome';
+import { GovsecscreenPage } from '../pages/govsecscreen/govsecscreen';
+import { ManfhomePage } from '../pages/manfhome/manfhome';
+import { CommonserviceProvider } from '../providers/commonservice/commonservice';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    LoginPage,
+    GovhomePage,
+    GovsecscreenPage,
+    ManfhomePage
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    LoginPage,
+    GovhomePage,
+    GovsecscreenPage,
+    ManfhomePage
   ],
   providers: [
+    HTTP,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    BarcodeScanner,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    CommonserviceProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }

@@ -1,0 +1,19 @@
+page-govsecscreen {
+    .toolbar-background{
+        // background:  linear-gradient(to bottom, #009e8e,#05e4cd);
+        background: linear-gradient(to bottom,#66656d, #d8d8d8) !important;
+     }
+     .scroll-content{
+        background: none;;
+        opacity: 1;
+    }
+    .circleDiv{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%; 
+        margin-left: 35%;
+        padding-top: 25px;
+        border: 1px solid #686868; 
+        text-align: center;
+    }
+}

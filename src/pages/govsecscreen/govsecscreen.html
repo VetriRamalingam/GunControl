@@ -1,0 +1,39 @@
+<!--
+  Generated template for the GovhomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+  <ion-navbar>
+    <div class="shead">
+      <!-- <ion-icon md="md-home" name="star"></ion-icon> -->
+      <ion-avatar item-start>
+        <img style="position: fixed; left:51%; top:48%;   
+          width: 50px; transform: translate(-50%,-50%)" src="assets/imgs/loginBg1.png">
+      </ion-avatar>
+    </div>
+
+    <!-- <ion-title >Home<ion-icon name="power" style="right: 6%; position: absolute;"></ion-icon></ion-title> -->
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="contentDashboard">
+  <div style="display: block; text-align: center;margin-top: 75px">
+    <div class="circleDiv" (click)="manfClick()">
+      <ion-icon ios="ios-person-add-outline" md="ios-person-add-outline" style="font-size: 4em;color: #000000"></ion-icon>
+    </div>
+    <div style="margin-top: 15px;">
+      <label class="tabText">ADD</label>
+    </div>
+  </div>
+  <div style="display: block; text-align: center;margin-top: 75px">
+    <div class="circleDiv" (click)="dealClick()">
+      <ion-icon ios="ios-eye-outline" md="ios-eye-outline" style="font-size: 4em;color: #000000"></ion-icon>
+    </div>
+    <div style="margin-top: 15px;">
+      <label class="tabText">VIEW</label>
+    </div>
+  </div>
+
+</ion-content>

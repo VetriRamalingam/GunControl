@@ -1,0 +1,27 @@
+<ion-content padding class="contentLogin">
+
+  <ion-avatar item-start>
+    <img style="position: fixed; left:50%; top:20%;   
+        width: 200px; transform: translate(-50%,-50%)" src="assets/imgs/loginBg1.png">
+  </ion-avatar>
+
+  <div style="margin-top: 270px;">
+
+
+    <ion-item class="inputBox">
+      <ion-label floating>Username</ion-label>
+      <ion-input type="text" [(ngModel)]="credentials.username" name="username"> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="credentials.password" name="password"></ion-input>
+    </ion-item>
+
+    <div padding>
+      <button ion-button full (click)="login()" style="background:#595ba5!important;">Log In</button>
+    </div>
+
+  </div>
+
+</ion-content>
