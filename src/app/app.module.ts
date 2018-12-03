@@ -15,6 +15,9 @@ import { LoginPage } from '../pages/login/login';
 import { GovhomePage } from '../pages/govhome/govhome';
 import { GovsecscreenPage } from '../pages/govsecscreen/govsecscreen';
 import { ManfhomePage } from '../pages/manfhome/manfhome';
+import { CushomePage } from '../pages/cushome/cushome';
+import { GdetailsPage } from '../pages/gdetails/gdetails';
+
 import { CommonserviceProvider } from '../providers/commonservice/commonservice';
 
 @NgModule({
@@ -23,7 +26,9 @@ import { CommonserviceProvider } from '../providers/commonservice/commonservice'
     LoginPage,
     GovhomePage,
     GovsecscreenPage,
-    ManfhomePage
+    ManfhomePage,
+    CushomePage,
+    GdetailsPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,9 @@ import { CommonserviceProvider } from '../providers/commonservice/commonservice'
     LoginPage,
     GovhomePage,
     GovsecscreenPage,
-    ManfhomePage
+    ManfhomePage,
+    CushomePage,
+    GdetailsPage
   ],
   providers: [
     HTTP,

@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 
 import { GovhomePage } from '../govhome/govhome';
 import { ManfhomePage } from '../manfhome/manfhome';
+import { CushomePage } from '../cushome/cushome';
 /**
  * Generated class for the LoginPage page.
  *
@@ -33,8 +34,11 @@ export class LoginPage {
     if (this.credentials["username"] == "g") {
       self.navCtrl.setRoot(GovhomePage);
     }
-    else if(this.credentials["username"] == "m"){
+    else if (this.credentials["username"] == "m") {
       self.navCtrl.setRoot(ManfhomePage);
+    }
+    else if (this.credentials["username"] == "c") {
+      self.navCtrl.setRoot(CushomePage);
     }
     else {
       let alert = this.alertCtrl.create({

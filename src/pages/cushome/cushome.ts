@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { GovsecscreenPage } from '../govsecscreen/govsecscreen';
 import { LoginPage } from '../login/login';
 
 /**
- * Generated class for the GovhomePage page.
+ * Generated class for the CushomePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -13,24 +12,16 @@ import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
-  selector: 'page-govhome',
-  templateUrl: 'govhome.html',
+  selector: 'page-cushome',
+  templateUrl: 'cushome.html',
 })
-export class GovhomePage {
-  tag: any;
+export class CushomePage {
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad GovhomePage');
-  }
-  manfClick() {
-    localStorage.setItem('tag', "manufacturer");
-    this.navCtrl.push(GovsecscreenPage);
-  }
-  dealClick() {
-    localStorage.setItem('tag', "dealer");
-    this.navCtrl.push(GovsecscreenPage);
+    console.log('ionViewDidLoad CushomePage');
   }
   dismiss() {
     this.navCtrl.push(LoginPage);

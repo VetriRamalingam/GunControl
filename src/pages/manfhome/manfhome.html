@@ -25,29 +25,34 @@
 
 
 <ion-content padding class="contentDashboard">
-    <div style="display: block; text-align: center;margin-top: 35px">
-        <div class="circleDiv" (click)="manfClick()">
-          <ion-icon ios="ios-add-outline" md="ios-construct-outline" style="font-size: 4em;color: #000000"></ion-icon>
-        </div>
-        <div style="margin-top: 15px;">
-          <label class="tabText">ADD</label>
-        </div>
-      </div>
-      <div style="display: block; text-align: center;margin-top: 20px">
-        <div class="circleDiv" (click)="dealClick()">
-          <ion-icon ios="ios-information-outline" md="ios-cart-outline" style="font-size: 4em;color: #000000"></ion-icon>
-        </div>
-        <div style="margin-top: 15px;">
-          <label class="tabText">Info</label>
-        </div>
-      </div>
-      <div style="display: block; text-align: center;margin-top: 20px">
-          <div class="circleDiv" (click)="dealClick()">
-            <ion-icon ios="ios-play-outline" md="ios-play-outline" style="font-size: 4em;color: #000000;width: 16px;    margin: -3px;"></ion-icon>
-          </div>
-          <div style="margin-top: 15px;">
-            <label class="tabText">Transfer</label>
-          </div>
-        </div>
+  <div style="display: block; text-align: center;margin-top: 35px">
+    <div class="circleDiv" (click)="addgun()">
+      <ion-icon ios="ios-add-outline" md="ios-add-outline" style="font-size: 4em;color: #000000;    margin-top: -5px;"></ion-icon>
+    </div>
+    <div style="margin-top: 15px;">
+      <label class="tabText">ADD</label>
+    </div>
+  </div>
+  <div style="display: block; text-align: center;margin-top: 20px">
+    <div class="circleDiv" (click)="infogun()">
+      <ion-icon ios="ios-information-outline" md="ios-information-outline" style="font-size: 4em;color: #000000"></ion-icon>
+    </div>
+    <div style="margin-top: 15px;">
+      <label class="tabText">Info</label>
+    </div>
+  </div>
+  <div style="display: block; text-align: center;margin-top: 20px">
+    <div class="circleDiv" (click)="transfergun()">
+      <!-- <ion-icon ios="ios-play-outline" md="ios-play-outline" style="font-size: 4em;color: #000000;width: 16px;    margin: -3px;"></ion-icon> -->
+      <ion-avatar item-start>
+        <img style="position: fixed; left:51%; top:69%;   
+                      width: 40px; transform: translate(-56%,-50%)"
+          src="assets/imgs/dt.png">
+      </ion-avatar>
+    </div>
+    <div style="margin-top: 15px;">
+      <label class="tabText">Transfer</label>
+    </div>
+  </div>
 
 </ion-content>
