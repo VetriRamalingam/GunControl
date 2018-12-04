@@ -65,7 +65,8 @@ export class GovsecscreenPage {
                   if (response["returnCode"] == 'Success') {
                     console.log('OBC res : ' + JSON.stringify(response));
                     let alert = this.alertCtrl.create({
-                      message: 'Manufacturer Successfully added to Oracle BlockChain ',
+                      title:data.NAME ,
+                      message: 'is Successfully added to Oracle BlockChain ',
                       buttons: ['Dismiss']
                     });
                     alert.present();
@@ -74,11 +75,11 @@ export class GovsecscreenPage {
                   }
                   else {
                     let alert = this.alertCtrl.create({
-                      message: ' Check the credentials and retry',
+                      message: ' Manufacturer Name/ID Already Exists',
                       buttons: ['Dismiss']
                     });
                     alert.present();
-                    loading.dismiss();
+                    
                   }
 
                 })
@@ -92,16 +93,17 @@ export class GovsecscreenPage {
                   if (response["returnCode"] == 'Success') {
                     console.log('OBC res : ' + JSON.stringify(response));
                     let alert = this.alertCtrl.create({
-                      message: 'Dealer Successfully added to Oracle BlockChain ',
+                      title:data.NAME ,
+                      message: 'is Successfully added to Oracle BlockChain ',
                       buttons: ['Dismiss']
                     });
                     alert.present();
-                    loading.dismiss();
+
 
                   }
                   else {
                     let alert = this.alertCtrl.create({
-                      message: ' Check the credentials and retry',
+                      message: ' Dealer Name/ID Already Exists',
                       buttons: ['Dismiss']
                     });
                     alert.present();
@@ -150,6 +152,7 @@ export class GovsecscreenPage {
                 loading.dismiss();
                 console.log(JSON.stringify(response["result"]["payload"]));
                 if (response["returnCode"] == 'Success') {
+
                   let alert = this.alertCtrl.create({
                     title: 'Name :' + ' ' + JSON.parse(response["result"]["payload"])["manfid"],
                     subTitle: 'ID :' + ' ' + JSON.parse(response["result"]["payload"])["manfname"],

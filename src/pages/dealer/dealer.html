@@ -1,0 +1,37 @@
+<ion-header no-border>
+  <ion-navbar>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="dismiss()" class="my-style-for-modal">
+        <ion-icon name="md-power"></ion-icon>
+      </button>
+    </ion-buttons>
+    <div class="shead">
+      <ion-avatar item-start>
+        <img style="position: fixed; left:51%; top:48%;   
+          width: 50px; transform: translate(-50%,-50%)" src="assets/imgs/loginBg1.png">
+      </ion-avatar>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div style="display: block; text-align: center;margin-top: 35px">
+    <div class="circleDiv" (click)="addCustClick()">
+      <ion-icon ios="ios-add-outline" md="ios-person-add-outline" style="font-size: 4em;color: #000000"></ion-icon>
+    </div>
+    <div style="margin-top: 15px;">
+      <label class="tabText">ADD CUSTOMER</label>
+    </div>
+  </div>
+
+  <div style="display: block; text-align: center;margin-top: 35px">
+    <div class="circleDiv" (click)="transCustClick()">
+      <img style=" width: 40px; margin: 4px 6px" src="assets/imgs/dt.png">
+    </div>
+    <div style="margin-top: 15px;">
+      <label class="tabText">TRANSFER TO CUSTOMER</label>
+    </div>
+  </div>
+
+</ion-content>

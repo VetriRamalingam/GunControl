@@ -51,33 +51,6 @@ export class CommonserviceProvider {
   }
 
 
-
-  // readdata(bdata) {
-  //   console.log()
-  //   let jsonBody = {
-  //     "channel": this.channel,
-  //     "chaincode": this.chaincode,
-  //     "method": "readOrder",
-  //     "args": [bdata],
-  //     "chaincodeVer": this.chaincodeVer
-  //   };
-  //   return this.httpclient.post(this.API_URL, jsonBody, httpOptions)
-
-  // }
-
-  // customerResponse(b_id, res, text) {
-  //   console.log('barcode :' + b_id);
-  //   console.log('Response : ' + res);
-  //   console.log('text input :' + text);
-  //   let jsonBody = {
-  //     "channel": this.channel,
-  //     "chaincode": this.chaincode,
-  //     "method": "CustomerIssue",
-  //     "args": [b_id, res, text],
-  //     "chaincodeVer": this.chaincodeVer
-  //   };
-  //   return this.httpclient.post(this.API_inv_URL, jsonBody, httpOptions)
-  // }
   // dateformatDDMMMYYYY(d) {
   //   var date = new Date(d)
   //   var m_names = new Array("Jan", "Feb", "Mar",
@@ -122,19 +95,19 @@ export class CommonserviceProvider {
 
   }
 
-  initgun(gunid,gpsid,gname,model,type,ownr,manf) {
+  initgun(gunid, gpsid, gname, model, type, ownr, loc, manf) {
     let jsonBody = {
       "channel": this.channel,
       "chaincode": this.chaincode,
       "method": "initProduct",
-      "args": [gunid,gpsid,gname,model,type,ownr,"Florida",manf],
+      "args": [gunid, gpsid, gname, model, type, ownr, loc, manf],
       "chaincodeVer": this.chaincodeVer
     };
-    return this.httpclient.post(this.API_URL, jsonBody, httpOptions)
+    return this.httpclient.post(this.API_inv_URL, jsonBody, httpOptions)
 
   }
 
-  getHistoryGun(gid){
+  getHistoryGun(gid) {
     let jsonBody = {
       "channel": this.channel,
       "chaincode": this.chaincode,
@@ -144,5 +117,77 @@ export class CommonserviceProvider {
     };
     return this.httpclient.post(this.API_URL, jsonBody, httpOptions)
   }
+
+  transferGun(gunid, manuf, conr, nonr) {
+    let jsonBody = {
+      "channel": this.channel,
+      "chaincode": this.chaincode,
+      "method": "transferProduct",
+      "args": [gunid, manuf, conr, nonr],
+      "chaincodeVer": this.chaincodeVer
+    };
+    return this.httpclient.post(this.API_inv_URL, jsonBody, httpOptions)
+
+  }
+  listGunsWithmanufacturer(manufacturerName) {
+    console.log("manu name\n" + manufacturerName);
+    let jsonBody = {
+      "channel": this.channel,
+      "chaincode": this.chaincode,
+      "method": "queryProduct",
+      "args": ["{\"selector\":{\"Gun\":\"gun\",\"manf\":\"" + manufacturerName + "\"}}"],
+      "chaincodeVer": this.chaincodeVer
+    };
+    console.log("JSOn  :" + jsonBody)
+    return this.httpclient.post(this.API_URL, jsonBody, httpOptions)
+  }
+  readGunWithCustomer(custname) {
+    let jsonBody = {
+      "channel": this.channel,
+      "chaincode": this.chaincode,
+      "method": "queryProduct",
+      "args": ["{\"selector\":{\"Gun\":\"gun\",\"owner\":\"" + custname + "\"}}"],
+      "chaincodeVer": this.chaincodeVer
+    };
+    return this.httpclient.post(this.API_URL, jsonBody, httpOptions);
+  }
+  transferProductToCustomer(gunId, delaerName, custName, custSsn) {
+    let jsonBody = {
+      "channel": this.channel,
+      "chaincode": this.chaincode,
+      "method": "transferProductToCustomer",
+      "args": [gunId, delaerName, custName, custSsn],
+      "chaincodeVer": this.chaincodeVer
+    };
+
+    return this.httpclient.post(this.API_inv_URL, jsonBody, httpOptions);
+  }
+  addCustomer(ssn, name, age, location, address) {
+    console.log(ssn, name, age, location, address);
+    let jsonBody = {
+      "channel": this.channel,
+      "chaincode": this.chaincode,
+      "method": "initCustomer",
+      "args": [ssn, name, age, location, address],
+      "chaincodeVer": this.chaincodeVer
+    };
+
+    console.log(jsonBody);
+    console.log(this.httpclient.post(this.API_inv_URL, jsonBody, httpOptions))
+    return this.httpclient.post(this.API_inv_URL, jsonBody, httpOptions);
+  }
+  listGunsWithDealer(dealerName) {
+    console.log(dealerName);
+    let jsonBody = {
+      "channel": this.channel,
+      "chaincode": this.chaincode,
+      "method": "queryProduct",
+      "args": ["{\"selector\":{\"Gun\":\"gun\",\"dealername\":\"" + dealerName + "\"}}"],
+      "chaincodeVer": this.chaincodeVer
+    };
+    console.log(jsonBody);
+    return this.httpclient.post(this.API_URL, jsonBody, httpOptions)
+  }
+
 
 }

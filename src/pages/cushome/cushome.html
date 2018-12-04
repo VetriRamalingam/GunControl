@@ -1,6 +1,5 @@
 <!--
   Generated template for the CushomePage page.
-
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
@@ -22,25 +21,39 @@
 </ion-header>
 
 
-<ion-content >
-    <div class="cdetails">
-        <div class="cimg">
-          <ion-avatar item-start>
-            <img style="    position: fixed;
+<ion-content>
+  <div class="cdetails">
+    <div class="cimg">
+      <ion-avatar item-start>
+        <img style="    position: fixed;
             left: 26%;
             top: 14%;
             height: 151px;
             transform: translate(-50%,-50%);"
-              src="assets/imgs/user.jpg">
-          </ion-avatar>
-        </div>
-        <div class="cudetails">
-          <span style="font-size: 35px;">David</span>
-          <br/>
-          <span style="font-size: 17px;">315 Theatre Lane
-              Duarte, CA 91010</span>
-        </div>
-    
-      </div>
+          src="assets/imgs/user.jpg">
+      </ion-avatar>
+    </div>
+    <div class="cudetails">
+      <span style="font-size: 35px;">{{cusname}}</span>
+      <br />
+      <br/>
+      <span style="font-size: 17px; font-weight: 500">ID:</span>
+      <span style="font-size: 17px;">{{cusid}}</span>
+      <br/>  
+      <span style="font-size: 17px; font-weight: 500">Address:</span>       
+      <span style="font-size: 17px;">{{cusadr}}</span>
+      <br/>
+      <span style="font-size: 17px;">{{cusloc}}</span>
+    </div>
+
+  </div>
+  <ion-card (click)="historypage()">
+    <ion-card-header>
+      {{gunid}}
+    </ion-card-header>
+    <ion-card-content>
+      Tap to know the history
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

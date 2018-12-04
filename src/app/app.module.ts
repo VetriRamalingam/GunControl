@@ -17,6 +17,12 @@ import { GovsecscreenPage } from '../pages/govsecscreen/govsecscreen';
 import { ManfhomePage } from '../pages/manfhome/manfhome';
 import { CushomePage } from '../pages/cushome/cushome';
 import { GdetailsPage } from '../pages/gdetails/gdetails';
+import { ListgunPage } from '../pages/listgun/listgun';
+import { HistoryPage } from '../pages/history/history';
+import { ListGunDealerPage } from '../pages/list-gun-dealer/list-gun-dealer';
+import { DealerPage } from '../pages/dealer/dealer';
+
+
 
 import { CommonserviceProvider } from '../providers/commonservice/commonservice';
 
@@ -28,7 +34,12 @@ import { CommonserviceProvider } from '../providers/commonservice/commonservice'
     GovsecscreenPage,
     ManfhomePage,
     CushomePage,
-    GdetailsPage
+    GdetailsPage,
+    ListgunPage,
+    CushomePage,
+    HistoryPage,
+    ListGunDealerPage,
+    DealerPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +55,12 @@ import { CommonserviceProvider } from '../providers/commonservice/commonservice'
     GovsecscreenPage,
     ManfhomePage,
     CushomePage,
-    GdetailsPage
+    GdetailsPage,
+    ListgunPage,
+    CushomePage,
+    HistoryPage,
+    ListGunDealerPage,
+    DealerPage
   ],
   providers: [
     HTTP,
