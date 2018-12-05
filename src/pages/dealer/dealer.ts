@@ -159,5 +159,25 @@ export class DealerPage {
   transCustClick() {
     this.navCtrl.push(ListGunDealerPage);
   }
+  infocus(){
+    // let alert = this.alertCtrl.create({
+    //   title: 'Enter SSN',
+    //   inputs: [
+    //     {
+    //       name: 'ssn',
+    //       placeholder: 'SSN'
+    //     },
+
+    //   ],
+    //   buttons: [
+    //     {
+    //       text: 'Cancel',
+    //       role: 'cancel',
+    //       handler: data => {
+    //         console.log('Cancel clicked');
+    //       }
+    //     }]
+    //     });
+  }
 
 }

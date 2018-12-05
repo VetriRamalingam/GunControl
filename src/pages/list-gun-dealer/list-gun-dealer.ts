@@ -18,72 +18,73 @@ import { CommonserviceProvider } from '../../providers/commonservice/commonservi
   templateUrl: 'list-gun-dealer.html',
 })
 export class ListGunDealerPage {
-  dealerName:any;
-  guns:any;
-  custName:any;
-  ssn:any;
-  dealName:any;
+  dealerName: any;
+  guns: any;
+  custName: any;
+  custID: any;
+  ssn: any;
+  dealName: any;
   tempGunMap = {
-    guns:[]
+    guns: []
   }
-  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController, private cmnsvcprd: CommonserviceProvider,private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, private cmnsvcprd: CommonserviceProvider, private alertCtrl: AlertController) {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
-  
+
     loading.present();
     let credentials = JSON.parse(localStorage.getItem('credentials'));
 
     cmnsvcprd.listGunsWithDealer(credentials.username)
-    .subscribe( response => {
-      loading.dismiss();
+      .subscribe(response => {
+        loading.dismiss();
 
-      console.log( response );
-      this.guns = JSON.parse(response["result"]["payload"])[0]["Record"];
-      console.log( response );
-      console.log( typeof(this.guns) );
-      console.log("checking payload \n" + JSON.stringify(JSON.parse(response["result"]["payload"])));
-      console.log( this.guns );
+        console.log(response);
+        this.guns = JSON.parse(response["result"]["payload"])[0]["Record"];
+        console.log(response);
+        console.log(typeof (this.guns));
+        console.log("checking payload \n" + JSON.stringify(JSON.parse(response["result"]["payload"])));
+        console.log(this.guns);
 
-      this.guns = JSON.parse(response["result"]["payload"])
-      console.log("[1]\n" + Object.keys(this.guns).length);
+        this.guns = JSON.parse(response["result"]["payload"])
+        console.log("[1]\n" + Object.keys(this.guns).length);
 
 
-      var gunMap = new Array( Object.keys(this.guns).length );
+        var gunMap = new Array(Object.keys(this.guns).length);
 
-      console.log("gun length " + this.guns.length);
+        console.log("gun length " + this.guns.length);
 
-      
 
-      // gunMap.push([this.guns[0].Key, this.guns[0].Record.gunname]);
-      // gunMap.push([this.guns[1].Key, this.guns[1].Record.gunname]);
 
-      for( let i = 0; i < this.guns.length ; i++ )  {
-        console.log("i= " + i);
-        this.tempGunMap.guns.push([this.guns[i].Key, this.guns[i].Record.gunname])
-      };
+        // gunMap.push([this.guns[0].Key, this.guns[0].Record.gunname]);
+        // gunMap.push([this.guns[1].Key, this.guns[1].Record.gunname]);
 
-      console.log("gunMap\n" + typeof(gunMap))
-      console.log("gunMap data\n" + (gunMap))
-      console.log(this.guns[0].Key)
-      console.log(this.guns[0].Record.gunname)
+        for (let i = 0; i < this.guns.length; i++) {
+          console.log("i= " + i);
+          this.tempGunMap.guns.push([this.guns[i].Key, this.guns[i].Record.gunname])
+        };
 
-     
-      for(let i=0; i < Object.keys(this.guns).length; i++){
-        
-      }
-      
-      
-      this.guns = JSON.stringify(this.guns);
-      console.log(this.tempGunMap);
-      
-    })
+        console.log("gunMap\n" + typeof (gunMap))
+        console.log("gunMap data\n" + (gunMap))
+        console.log(this.guns[0].Key)
+        console.log(this.guns[0].Record.gunname)
+
+
+        for (let i = 0; i < Object.keys(this.guns).length; i++) {
+
+        }
+
+
+        this.guns = JSON.stringify(this.guns);
+        console.log(this.tempGunMap);
+
+      })
   }
-  
+
   dismiss() {
     this.navCtrl.push(LoginPage);
   }
-  transferToCustomer(gunId){
+  transferToCustomer(gunId) {
     console.log(gunId);
     let alert = this.alertCtrl.create({
       title: 'Enter SSN',
@@ -92,7 +93,7 @@ export class ListGunDealerPage {
           name: 'ssn',
           placeholder: 'SSN'
         },
-        
+
       ],
       buttons: [
         {
@@ -108,66 +109,90 @@ export class ListGunDealerPage {
             let loadr = this.loadingCtrl.create({
               content: 'Transferring...'
             });
+            let loading = this.loadingCtrl.create({
+              content: 'Please wait...'
+            });
+
             this.ssn = data.ssn;
-            loadr.present();
+            loading.present();
             this.cmnsvcprd.readany(data.ssn)
-            .subscribe( custResponse => {
-              if( custResponse["returnCode"]=="Success"){
-              this.custName =  JSON.parse(custResponse["result"]["payload"])[2];
-              console.log("custName\n" + this.custName);
-              
-              var dealer = JSON.parse(localStorage.getItem('credentials'));
-              console.log("dealer\n" + dealer);
-              this.dealerName = dealer["username"];
+              .subscribe(custResponse => {
+                if (custResponse["returnCode"] == "Success") {
+                  this.custName = JSON.parse(custResponse["result"]["payload"])[2];
+                  this.custID = JSON.parse(custResponse["result"]["payload"])[1];
+                  console.log("custName\n" + this.custName);
 
-              console.log("dealer\n" + this.dealerName);
-              
-              this.cmnsvcprd.transferProductToCustomer(gunId, this.dealerName, this.custName, this.ssn)
-    .subscribe( response => {
-      
+                  var dealer = JSON.parse(localStorage.getItem('credentials'));
+                  console.log("dealer\n" + dealer);
+                  this.dealerName = dealer["username"];
 
-      //opening confirmation alert
-      if(response["returnCode"] == "Success"){
-        loadr.dismiss();
-        let alert = this.alertCtrl.create({
-          title: 'Success',
-          subTitle: 'Gun '+ gunId + ' has been successfully transfered to '+ this.custName,
-          buttons: ['Dismiss']
-        });
-        alert.present();
-      }
-      else{
-        loadr.dismiss();
-        let alert = this.alertCtrl.create({
-          title: 'Failure',
-          subTitle: JSON.stringify(response["info"]["peerErrors"][0]["errMsg"]),
-          buttons: ['Dismiss']
-        });
-        alert.present();
+                  console.log("dealer\n" + this.dealerName);
+                  this.cmnsvcprd.readGunWithCustomer(this.custName)
+                    .subscribe(res => {
+                      loading.dismiss();
 
-      }
-    })
+                      console.log('response from rgc :' + JSON.stringify(res))
+                      if( !(JSON.parse(res["result"]["payload"]).length > 0 ) ){
+                        loadr.present();
+                        this.cmnsvcprd.transferProductToCustomer(gunId, this.dealerName, this.custName, this.ssn)
+                          .subscribe(response => {
+                            loadr.dismiss();
+                            console.log('tptc : ' + response);
 
-    
-  }
-            
-  else{
-    let alert = this.alertCtrl.create({
-      title: 'Customer not found',
-      subTitle: 'Error',
-      buttons: ['Dismiss']
-    });
-    alert.present();
+                            //opening confirmation alert
+                            if (response["returnCode"] == "Success") {
 
-  }
-  });
+                              let alert = this.alertCtrl.create({
+                                title: 'Success',
+                                subTitle: 'Gun ' + gunId + ' has been successfully transfered to ' + this.custName,
+                                buttons: ['Dismiss']
+                              });
+                              alert.present();
+                            }
+                            else {
+
+                              let alert = this.alertCtrl.create({
+                                title: 'Failure',
+                                subTitle: JSON.stringify(response["info"]["peerErrors"][0]["errMsg"]),
+                                buttons: ['Dismiss']
+                              });
+                              alert.present();
+
+                            }
+                          })
+                      }
+                      else {
+
+                        let alert = this.alertCtrl.create({
+                          title: this.custName + ',' + 'ID : ' + this.custID,
+                          message: 'Already has a gun. Not Authorized for more ',
+                          buttons: ['Dismiss']
+                        })
+                        alert.present();
+
+                      }
+                    });
+
+
+                }
+
+                else {
+                  let alert = this.alertCtrl.create({
+                    title: 'Customer not found',
+                    subTitle: 'Error',
+                    buttons: ['Dismiss']
+                  });
+                  alert.present();
+
+                }
+              });
           }
         }
       ]
     });
     alert.present();
 
-    
+
 
 
   }
@@ -175,5 +200,7 @@ export class ListGunDealerPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListGunDealerPage');
   }
+
+
 
 }
